@@ -7,14 +7,14 @@ from ..models import User
 
 
 # registration route
-@auth.route('templates/auth/reqister',methods=['GET','POST'])
+@auth.route('auth/register',methods=['GET','POST'])
 def register():
     """
     Function that registers the users
     """
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(email = form.email.data, username = form.username.data, password = form.password.data)
+        user = User(email = form.email.data, username = form.username.data, password_hash = form.password.data)
         db.session.add(user)
         db.session.commit()
 
@@ -40,7 +40,7 @@ def login():
 
         flash('Invalid Username or Password')
 
-    title = "60sec Pitch|Login"
+    title = "Flask Plog - Share to Care"
     return render_template('auth/login.html', login_form = login_form, title = title)
 
 
