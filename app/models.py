@@ -31,7 +31,7 @@ class User(UserMixin,db.Model):
 
 
     def verify_password(self,password):
-        return check_password_hash(self.pass_secure,password)
+        return check_password_hash(self.password_hash, password)
 
 
     def __repr__(self):
@@ -62,7 +62,7 @@ class Post(db.Model):
         post = Post.query.all()
         return post
 
-class Comment(db.Model):
+class Comments(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db. Integer, primary_key=True)

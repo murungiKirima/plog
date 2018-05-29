@@ -14,8 +14,6 @@ class RegistrationForm(FlaskForm):
     password_confirm = PasswordField('confirm password', validators=[Required()])
     submit = SubmitField('sign Up')
 
-
-    #custom validators
     def validate_email(self, data_field):
         """
         Functions takes in the data field and checks our database to confirm user Validation
@@ -32,7 +30,6 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('That user name is already taken. Try another one')
 
 
-#login class  takes three inputs from the user
 class LoginForm(FlaskForm):
     email = StringField('Your email address', validators=[Required(),Email()])
     password = PasswordField('Password', validators=[Required()])
